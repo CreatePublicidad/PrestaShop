@@ -1,0 +1,23 @@
+Hello everyone, I am new to this group, I have this problem with my store when updating, I do not know how I can solve it, thank you very much for the help
+
+[PrestaShopDatabaseException]
+Table 'createpu_pruebaonline.ps_connections' doesn't exist<br /><br /><pre>SELECT SQL_NO_CACHE `id_guest` FROM `ps_connections` WHERE `id_guest` = 0 AND `date_add` > '2021-12-08 09:10:00' AND id_shop IN (1) ORDER BY `date_add` DESC LIMIT 1</pre>
+at line 769 in file classes/db/Db.php
+
+764.         if ($webservice_call && $errno) {
+765.             $dbg = debug_backtrace();
+766.             WebserviceRequest::getInstance()->setError(500, '[SQL Error] ' . $this->getMsgError() . '. From ' . (isset($dbg[3]['class']) ? $dbg[3]['class'] : '') . '->' . $dbg[3]['function'] . '() Query was : ' . $sql, 97);
+767.         } elseif (_PS_DEBUG_SQL_ && $errno && !defined('PS_INSTALLATION_IN_PROGRESS')) {
+768.             if ($sql) {
+769.                 throw new PrestaShopDatabaseException($this->getMsgError() . '<br /><br /><pre>' . $sql . '</pre>');
+770.             }
+771. 
+772.             throw new PrestaShopDatabaseException($this->getMsgError());
+773.         }
+774.     }
+DbCore->displayError - [line 385 - classes/db/Db.php] - [1 Arguments]
+DbCore->query - [line 663 - classes/db/Db.php] - [1 Arguments]
+DbCore->getRow - [line 154 - classes/Connection.php] - [2 Arguments]
+ConnectionCore::setNewConnection - [line 97 - classes/Connection.php] - [1 Arguments]
+ConnectionCore::setPageConnection - [line 111 - modules/statsdata/statsdata.php] - [1 Arguments]
+statsdata->getScriptCustomerPagesViews - [line 69 - modules/statsdata/statsdata.php] - [1 Arguments]
